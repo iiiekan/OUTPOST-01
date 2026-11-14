@@ -30,15 +30,14 @@ export default function App() {
       {/* Middle: the window onto the moon */}
       <GameWindow timeLeft={timeLeft} />
 
-      {/* Right wall: comms and radiation graph */}
-      <div className="right">
-        <CommsPanel game={game} />
-        <RadiationGraph
-          history={game.history}
-          shield={game.shield}
-          radiation={game.radiation}
-        />
-      </div>
+      {/* Right wall screens. These two are positioned over the screen holes
+          in the room artwork (see RadiationGraph.css and CommsPanel.css). */}
+      <RadiationGraph
+        history={game.history}
+        shield={game.shield}
+        radiation={game.radiation}
+      />
+      <CommsPanel game={game} />
 
       {/* Bottom: shielding slider, oxygen button, meters */}
       <Console game={game} onShield={setShield} onPump={setPumping} />
