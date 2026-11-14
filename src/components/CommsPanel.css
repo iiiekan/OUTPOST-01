@@ -1,12 +1,44 @@
-/* CommsPanel: the astronaut's face and speech */
+/* CommsPanel: the astronaut's face and speech.
 
-.comms {
-  text-align: center;
+   POSITION: this box sits exactly on the BOTTOM screen of the right wall in
+   room-bg.png. The numbers are percentages of the room (= of the artwork):
+     left 60.9%, top 39.1%, width 16.9%, height 12.6%
+   If the artwork changes, measure the transparent hole again and update them. */
+
+.comms-screen {
+  position: absolute;
+  left: 60.9%;
+  top: 39.1%;
+  width: 16.9%;
+  height: 12.6%;
+
+  /* Makes this box a "container": the cqh / cqw units used inside it
+     (1cqh = 1% of this box's height, 1cqw = 1% of its width) scale with it.
+     Those units only work on elements INSIDE the container, which is why
+     the content has its own .comms box below. */
+  container-type: size;
+
+  background: var(--panel);
 }
 
-/* The face drawing: outlines only */
+.comms {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 6cqw;
+  padding: 6cqh 6cqw;
+
+  color: var(--ink);
+  font-size: clamp(7px, min(11cqh, 7cqw), 12px);
+}
+
+/* The face drawing: outlines only, as tall as the box allows */
 .face {
-  width: 90px;
+  flex: none;
+  width: 62cqh;
+  height: 62cqh;
 
   fill: none;
   stroke: var(--ink);
@@ -20,9 +52,21 @@
   stroke: none;
 }
 
-/* What the astronaut says (min-height stops the panel from jumping around) */
+/* Title + speech, next to the face */
+.comms-text {
+  flex: 1;
+  min-width: 0;          /* lets the text wrap instead of overflowing */
+  overflow: hidden;
+}
+
+.comms-title {
+  margin-bottom: 0.4em;
+  font-size: 0.85em;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+/* What the astronaut says */
 .speech {
-  min-height: 36px;
-  margin-top: 6px;
-  font-size: 13px;
+  line-height: 1.25;
 }

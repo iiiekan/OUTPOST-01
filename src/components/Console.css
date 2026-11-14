@@ -16,11 +16,10 @@
   border: 2px solid var(--ink);
 }
 
-.control input[type='range'] {
-  width: 100%;
-  accent-color: #555;
+/* Sprite controls (slider and oxygen button) are centered with their label under them */
+.sprite-control {
+  text-align: center;
 }
-
 
 /* ---------- Meters (power, oxygen, crew) ---------- */
 
@@ -46,37 +45,11 @@
 
 
 /* ---------- Locked state ----------
-   Added when power is below the minimum: the control turns red
-   to show it can't be used. */
+   Added when power is below the minimum: the label turns red and the
+   sprites are tinted red (see OxygenButton.css and ShieldSlider.css). */
 
 .control.locked .label {
   color: #c0392b;
-}
-
-.control.locked input[type='range'] {
-  accent-color: #c0392b;
-}
-
-.control.locked input[type='range']::-webkit-slider-runnable-track {
-  height: 6px;
-  background: #c0392b;
-}
-
-.control.locked input[type='range']::-moz-range-track {
-  height: 6px;
-  background: #c0392b;
-}
-
-/* Red oxygen button. The longer selector makes sure it beats the
-   normal and "held" button styles in base.css. */
-.console .big-btn.locked,
-.console .big-btn.locked:hover {
-  background: #c0392b;
-  color: #f2f2f2;
-  border-color: #7a1f16;
-
-  cursor: not-allowed;
-  pointer-events: none;
 }
 
 /* The "NOT ENOUGH POWER" message */

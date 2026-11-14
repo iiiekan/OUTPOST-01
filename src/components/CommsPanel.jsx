@@ -1,6 +1,9 @@
-// RIGHT WALL (top): the astronaut's camera feed.
+// RIGHT WALL, BOTTOM SCREEN: the astronaut's camera feed.
 // Shows a face and a line of speech. Both change with the crew's health,
 // so they act as a hint of how much health is left.
+//
+// The position on screen is set in CommsPanel.css (it sits on the bottom
+// screen hole of the room artwork).
 import { commsLine, moodFor } from '../game/mechanics/comms.js'
 import './CommsPanel.css'
 
@@ -40,12 +43,17 @@ function Face({ mood }) {
 
 export default function CommsPanel({ game }) {
   return (
-    <div className="panel comms">
-      <Face mood={moodFor(game.health)} />
+    // comms-screen = the box placed on the artwork, comms = what is drawn inside it
+    <div className="comms-screen">
+      <div className="comms">
+        <Face mood={moodFor(game.health)} />
 
-      <div className="label">CAMERA CONTROL</div>
+        <div className="comms-text">
+          <div className="comms-title">CAMERA CONTROL</div>
 
-      <div className="speech">"{commsLine(game)}"</div>
+          <div className="speech">"{commsLine(game)}"</div>
+        </div>
+      </div>
     </div>
   )
 }
