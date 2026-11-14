@@ -1,0 +1,28 @@
+/* Overlay: the start / game over / mission complete screen.
+   It covers the whole control room. */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;                  /* above everything else */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+
+  background: rgba(200, 200, 200, 0.94);
+  text-align: center;
+}
+
+.overlay h1 {
+  margin: 0;
+  letter-spacing: 3px;
+}
+
+/* The start / try again button should fit its text, not stretch */
+.overlay .big-btn {
+  width: auto;
+}

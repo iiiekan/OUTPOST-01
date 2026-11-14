@@ -1,0 +1,39 @@
+/* GameWindow: the big window onto the moon surface */
+
+.window {
+  position: relative;
+  min-height: 340px;
+  overflow: hidden;
+
+  background: #e6e6e6;
+  border: 2px solid var(--ink);
+}
+
+/* The drawing fills the whole window */
+.window svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  fill: #e6e6e6;
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.window svg .ground {
+  fill: #b0b0b0;
+}
+
+/* Craters are outlines only */
+.window svg ellipse {
+  fill: none;
+}
+
+/* "MISSION 123s" countdown in the top-left corner */
+.timer {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-size: 12px;
+}

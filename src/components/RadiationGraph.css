@@ -1,0 +1,23 @@
+/* RadiationGraph: radiation history (solid) and shielding level (dashed) */
+
+.graph svg {
+  width: 100%;
+  height: 80px;
+
+  background: var(--bg);
+  border: 1px solid var(--line-faint);
+}
+
+/* Solid line: radiation over time */
+.rad-line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+/* Dashed line: the player's shielding setting */
+.shield-line {
+  stroke: #777;
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+}

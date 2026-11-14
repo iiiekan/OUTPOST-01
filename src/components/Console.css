@@ -1,0 +1,98 @@
+/* Console: the bottom control panel
+   (shielding slider, oxygen button, meters) */
+
+/* ---------- Layout ---------- */
+
+.console {
+  grid-column: 1 / -1;          /* span the full width of the room */
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;   /* slider | button | meters */
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+
+  background: var(--panel);
+  border: 2px solid var(--ink);
+}
+
+.control input[type='range'] {
+  width: 100%;
+  accent-color: #555;
+}
+
+
+/* ---------- Meters (power, oxygen, crew) ---------- */
+
+.meter {
+  display: grid;
+  grid-template-columns: 60px 1fr 30px;   /* name | bar | number */
+  gap: 8px;
+  align-items: center;
+  margin: 3px 0;
+  font-size: 12px;
+}
+
+.bar {
+  height: 10px;
+  background: var(--bg);
+  border: 1px solid var(--ink);
+}
+
+.bar div {
+  height: 100%;
+  background: #555;
+}
+
+
+/* ---------- Locked state ----------
+   Added when power is below the minimum: the control turns red
+   to show it can't be used. */
+
+.control.locked .label {
+  color: #c0392b;
+}
+
+.control.locked input[type='range'] {
+  accent-color: #c0392b;
+}
+
+.control.locked input[type='range']::-webkit-slider-runnable-track {
+  height: 6px;
+  background: #c0392b;
+}
+
+.control.locked input[type='range']::-moz-range-track {
+  height: 6px;
+  background: #c0392b;
+}
+
+/* Red oxygen button. The longer selector makes sure it beats the
+   normal and "held" button styles in base.css. */
+.console .big-btn.locked,
+.console .big-btn.locked:hover {
+  background: #c0392b;
+  color: #f2f2f2;
+  border-color: #7a1f16;
+
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* The "NOT ENOUGH POWER" message */
+.warn-text {
+  margin-top: 6px;
+  color: #c0392b;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 700px) {
+  .console {
+    grid-template-columns: 1fr;
+  }
+}

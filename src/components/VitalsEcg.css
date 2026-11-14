@@ -1,0 +1,27 @@
+/* VitalsEcg: the scrolling heartbeat line */
+
+.ecg {
+  width: 100%;
+  height: 50px;
+
+  background: var(--bg);
+  border: 1px solid var(--line-faint);
+}
+
+.ecg path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+/* Scrolls left by exactly one beat (60 units) and repeats forever.
+   The duration is set from the heart rate in VitalsEcg.jsx. */
+.ecg-scroll {
+  animation: scroll 1s linear infinite;
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(-60px);
+  }
+}

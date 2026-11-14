@@ -1,0 +1,52 @@
+/* WarningPanel: the warning light on the left wall */
+
+.warning {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* The triangle is drawn with the current text color (currentColor) */
+.triangle {
+  width: 80px;
+  color: var(--line-faint);     /* greyed out when no hazard is active */
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+}
+
+.triangle circle {
+  fill: currentColor;           /* the dot at the bottom of the "!" */
+}
+
+/* Alarm ON: the whole panel blinks between dark and light */
+.warning.on {
+  background: var(--ink);
+  color: var(--panel);
+  animation: blink 0.7s steps(1) infinite;
+}
+
+.warning.on .triangle {
+  color: inherit;               /* follow the blinking panel colors */
+}
+
+@keyframes blink {
+  50% {
+    background: var(--panel);
+    color: var(--ink);
+  }
+}
+
+
+/* Small screens: put the triangle next to the text */
+@media (max-width: 700px) {
+  .warning {
+    flex-direction: row;
+  }
+
+  .triangle {
+    width: 36px;
+  }
+}
