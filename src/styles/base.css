@@ -1,0 +1,117 @@
+/* ============================================================
+   BASE STYLES
+   Colors, page layout, and the shared styles used by many
+   components (panels, labels, buttons).
+   Each component also has its own .css file next to it.
+   ============================================================ */
+
+
+/* ---------- Colors (change the whole look from here) ---------- */
+
+:root {
+  --bg: #c4c4c4;           /* page background */
+  --panel: #d6d6d6;        /* panel / console background */
+  --ink: #2b2b2b;          /* text and outlines */
+  --line-faint: #8a8a8a;   /* light outlines, switched-off things */
+}
+
+
+/* ---------- Page ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Courier New', monospace;
+}
+
+
+/* ---------- Control room layout ----------
+   Three columns:  [ warning ] [ window ] [ right panels ]
+   Two rows:       [ the three above    ]
+                   [ console (full width) ]                  */
+
+.room {
+  position: relative;       /* so the start / game over overlay can cover it */
+  max-width: 1000px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 12px;
+
+  display: grid;
+  grid-template-columns: 130px 1fr 230px;
+  grid-template-rows: 1fr auto;
+  gap: 10px;
+}
+
+/* Right column: comms and radiation graph stacked */
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+/* ---------- Shared pieces ---------- */
+
+/* A boxed section of the control room */
+.panel {
+  padding: 8px;
+  background: var(--panel);
+  border: 2px solid var(--ink);
+}
+
+/* Small uppercase text label */
+.label {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.label b {
+  font-size: 16px;   /* bold number inside a label, e.g. the radiation value */
+}
+
+.label.small {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+/* Main button style (oxygen button, start button, ...) */
+.big-btn {
+  width: 100%;
+  padding: 14px 18px;
+
+  background: var(--panel);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+
+  user-select: none;
+  touch-action: none;
+}
+
+.big-btn:hover {
+  background: #e4e4e4;
+}
+
+/* While the button is being held down */
+.big-btn.held {
+  background: var(--ink);
+  color: var(--panel);
+}
+
+
+/* ---------- Small screens: stack everything in one column ---------- */
+
+@media (max-width: 700px) {
+  .room {
+    grid-template-columns: 1fr;
+  }
+}
