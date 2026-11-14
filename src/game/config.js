@@ -22,6 +22,16 @@ export const POWER = {
 }
 
 
+// ---------- Shielding slider ----------
+
+// The slider clicks between fixed notches (like a real switch):
+//   0, 4, 8, ... 96, 100  ->  26 notches
+export const SHIELD = {
+  step: 4,              // shielding goes up by this much per notch
+  max: 100,             // highest shielding
+}
+
+
 // ---------- Oxygen ----------
 
 export const OXYGEN = {
