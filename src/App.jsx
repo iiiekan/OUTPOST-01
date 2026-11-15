@@ -10,6 +10,7 @@ import CommsPanel from './components/CommsPanel.jsx'
 import RadiationGraph from './components/RadiationGraph.jsx'
 import Console from './components/Console.jsx'
 import Overlay from './components/Overlay.jsx'
+import CameraMonitor from './components/CameraMonitor.jsx';
 
 import './styles/base.css'
 
@@ -31,7 +32,8 @@ export default function App() {
       {/* Middle: the window onto the moon */}
       <GameWindow timeLeft={timeLeft} />
 
-      <GreenPanels/>
+      <GreenPanels />
+      <CameraMonitor />
 
       {/* Right wall: comms and radiation graph */}
       <div className="right">

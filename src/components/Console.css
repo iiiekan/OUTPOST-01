@@ -25,7 +25,7 @@
 
 /* Slant the meters block to match the desk perspective */
 .control:has(.meter) {
-  transform: skewX(35deg) rotate(-1deg);
+  transform: skewX(40deg) rotate(0deg);
   transform-origin: bottom left;
 }
 
@@ -40,7 +40,7 @@
   font-size: 11px;
   font-weight: bold;
   color: #1a2233;
-  transform: translate(60px, -15px);
+  transform: translate(100px, -20px);
 }
 
 .bar {
