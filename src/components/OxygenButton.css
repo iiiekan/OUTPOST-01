@@ -2,7 +2,7 @@
 
 .o2-button {
   display: block;
-  width: 100%;
+  width: 75%;
   max-width: 190px;
   margin: 0 auto;
   padding: 0;
@@ -14,11 +14,13 @@
 
   user-select: none;
   touch-action: none;
+
+  transform: translate(-30px, -10px)
 }
 
 .o2-button img {
   display: block;
-  width: 100%;
+  width: 75%;
   height: auto;
 
   pointer-events: none;   /* clicks go to the button, not the image */

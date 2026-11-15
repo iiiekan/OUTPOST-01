@@ -1,13 +1,15 @@
 /* ShieldSlider: the sprite-based shielding slider */
 
 .shield-slider {
-  width: 100%;
+  width: 75%;
   max-width: 190px;
   margin: 0 auto;
 
   cursor: grab;
   user-select: none;
   touch-action: none;   /* so dragging doesn't scroll the page on phones */
+
+  transform: translate(50px, -10px)
 }
 
 .shield-slider:active {
@@ -16,7 +18,7 @@
 
 .shield-slider img {
   display: block;
-  width: 100%;
+  width: 75%;
   height: auto;
 
   pointer-events: none;   /* pointer events are handled by the wrapper */

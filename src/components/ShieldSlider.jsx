@@ -9,7 +9,7 @@
 //   onChange - called with the new shielding value
 import { useRef } from 'react'
 
-import { SLIDER_FRAMES } from '../assets/frames.js'
+import { SLIDER_FRAMES } from '../assets/slide/frames.js'
 import { useFrameAnimation } from '../hooks/useFrameAnimation.js'
 import { NOTCH_COUNT, notchToShield, shieldToNotch } from '../game/mechanics/shielding.js'
 import { clamp } from '../game/mechanics/utils.js'

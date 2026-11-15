@@ -4,6 +4,7 @@ import { useGame } from './hooks/useGame.js'
 import { MISSION_LENGTH } from './game/config.js'
 
 import WarningPanel from './components/WarningPanel.jsx'
+import GreenPanels from './components/GreenPanels.jsx';
 import GameWindow from './components/GameWindow.jsx'
 import CommsPanel from './components/CommsPanel.jsx'
 import RadiationGraph from './components/RadiationGraph.jsx'
@@ -30,14 +31,17 @@ export default function App() {
       {/* Middle: the window onto the moon */}
       <GameWindow timeLeft={timeLeft} />
 
-      {/* Right wall screens. These two are positioned over the screen holes
-          in the room artwork (see RadiationGraph.css and CommsPanel.css). */}
-      <RadiationGraph
-        history={game.history}
-        shield={game.shield}
-        radiation={game.radiation}
-      />
-      <CommsPanel game={game} />
+      <GreenPanels/>
+
+      {/* Right wall: comms and radiation graph */}
+      <div className="right">
+        <CommsPanel game={game} />
+        <RadiationGraph
+          history={game.history}
+          shield={game.shield}
+          radiation={game.radiation}
+        />
+      </div>
 
       {/* Bottom: shielding slider, oxygen button, meters */}
       <Console game={game} onShield={setShield} onPump={setPumping} />

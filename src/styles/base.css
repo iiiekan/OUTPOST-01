@@ -1,10 +1,10 @@
 /* ---------- Colors (change the whole look from here) ---------- */
 
 :root {
-  --bg: #c4c4c4;           /* page background */
-  --panel: #d6d6d6;        /* panel / console background */
-  --ink: #2b2b2b;          /* text and outlines */
-  --line-faint: #8a8a8a;   /* light outlines, switched-off things */
+  --bg: #c4c4c4;
+  --panel: #d6d6d6;
+  --ink: #2b2b2b;
+  --line-faint: #8a8a8a;
 }
 
 
@@ -25,20 +25,19 @@ body {
 /* ---------- Control room layout ---------- */
 
 .room {
-  position: relative;       /* so the start / game over overlay can cover it */
-  max-width: 1000px;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 12px;
+  position: relative;
+  width: 900px;
+  height: 650px;
+  margin: 20px auto;
+  padding: 40px 50px;
 
-  /* Santun's full room background art */
   background-image: url('../assets/room-bg.png');
-  background-size: 100% 100%;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
   display: grid;
-  grid-template-columns: 130px 1fr 230px;
-  grid-template-rows: 1fr auto;
-  gap: 10px;
+  grid-template-columns: 140px 1fr 220px;
+  grid-template-rows: 1fr; 
+  gap: 15px;
 }
