@@ -1,91 +1,81 @@
-/* Console: the bottom control panel
-   (shielding slider, oxygen button, meters) */
+/* Console: the bottom control panel placed directly onto the 3D table */
 
 /* ---------- Layout ---------- */
 
 .console {
-  grid-column: 1 / -1;          /* span the full width of the room */
+  position: absolute;
+  bottom: 25px;       /* Positions the console right on top of the table */
+  left: 150px;
+  right: 150px;
 
   display: grid;
-  grid-template-columns: 1fr 1fr 1.4fr;   /* slider | button | meters */
-  gap: 10px;
+  grid-template-columns: 1fr 1fr 1.2fr;   /* slider | button | meters */
+  gap: 15px;
   align-items: center;
-  padding: 12px;
+  padding: 10px 20px;
 
-  background: var(--panel);
-  border: 2px solid var(--ink);
+  background: transparent !important;
+  border: none !important;
 }
 
-.control input[type='range'] {
-  width: 100%;
-  accent-color: #555;
+/* Sprite controls (slider and oxygen button) centered on the table */
+.sprite-control {
+  text-align: center;
 }
 
+/* Their labels ("SHIELDING 0", "OXYGEN PUMP") are bright blue so they stand out.
+   (When power runs out, the locked rule below turns them red instead.) */
+.sprite-control .label {
+  font-weight: bold;
+  color: var(--bright-blue);
+}
+
+/* Slant the meters block to match the desk perspective */
+.control:has(.meter) {
+  transform: skewX(40deg) rotate(0deg);
+  transform-origin: bottom left;
+}
 
 /* ---------- Meters (power, oxygen, crew) ---------- */
 
 .meter {
   display: grid;
-  grid-template-columns: 60px 1fr 30px;   /* name | bar | number */
-  gap: 8px;
+  grid-template-columns: 50px 1fr 25px;   /* name | bar | number */
+  gap: 6px;
   align-items: center;
   margin: 3px 0;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #1a2233;
+  transform: translate(100px, -20px);
 }
 
 .bar {
-  height: 10px;
-  background: var(--bg);
-  border: 1px solid var(--ink);
+  height: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #2a3a5c;
 }
 
 .bar div {
   height: 100%;
-  background: #555;
+  background: #4cc9f0;
 }
 
 
-/* ---------- Locked state ----------
-   Added when power is below the minimum: the control turns red
-   to show it can't be used. */
+/* ---------- Locked state ---------- */
 
 .control.locked .label {
-  color: #c0392b;
-}
-
-.control.locked input[type='range'] {
-  accent-color: #c0392b;
-}
-
-.control.locked input[type='range']::-webkit-slider-runnable-track {
-  height: 6px;
-  background: #c0392b;
-}
-
-.control.locked input[type='range']::-moz-range-track {
-  height: 6px;
-  background: #c0392b;
-}
-
-/* Red oxygen button. The longer selector makes sure it beats the
-   normal and "held" button styles in base.css. */
-.console .big-btn.locked,
-.console .big-btn.locked:hover {
-  background: #c0392b;
-  color: #f2f2f2;
-  border-color: #7a1f16;
-
-  cursor: not-allowed;
-  pointer-events: none;
+  color: #ff3b3b;
 }
 
 /* The "NOT ENOUGH POWER" message */
 .warn-text {
-  margin-top: 6px;
-  color: #c0392b;
-  font-size: 12px;
+  margin-top: 4px;
+  color: #ff3b3b;
+  font-size: 10px;
   font-weight: bold;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 
@@ -93,6 +83,9 @@
 
 @media (max-width: 700px) {
   .console {
+    position: static;
     grid-template-columns: 1fr;
+    background: var(--panel) !important;
+    border: 2px solid var(--ink) !important;
   }
 }

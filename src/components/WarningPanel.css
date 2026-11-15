@@ -1,52 +1,44 @@
-/* WarningPanel: the warning light on the left wall */
+/* WarningPanel: overlays Santun's pre-positioned warning layers */
 
 .warning {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  position: static;
+  pointer-events: none;
 }
 
-/* The triangle is drawn with the current text color (currentColor) */
-.triangle {
-  width: 80px;
-  color: var(--line-faint);     /* greyed out when no hazard is active */
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 3;
+/* First Warning Image (adjust left/top if needed) */
+.warning-img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  filter: grayscale(100%) brightness(55%);
+  opacity: 0.45;
+  transition: all 0.2s ease;
 }
 
-.triangle circle {
-  fill: currentColor;           /* the dot at the bottom of the "!" */
+/* Second Warning Image (tweak left/top if it's in a slightly different spot) */
+.warning-img-2 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  filter: grayscale(100%) brightness(55%);
+  opacity: 0.45;
+  transition: all 0.2s ease;
 }
 
-/* Alarm ON: the whole panel blinks between dark and light */
-.warning.on {
-  background: var(--ink);
-  color: var(--panel);
-  animation: blink 0.7s steps(1) infinite;
+/* When alarm turns ON, both light up and blink together */
+.warning.on .warning-img,
+.warning.on .warning-img-2 {
+  filter: none;
+  opacity: 1;
+  animation: blink-warning 0.7s steps(1) infinite;
 }
 
-.warning.on .triangle {
-  color: inherit;               /* follow the blinking panel colors */
-}
-
-@keyframes blink {
+@keyframes blink-warning {
   50% {
-    background: var(--panel);
-    color: var(--ink);
-  }
-}
-
-
-/* Small screens: put the triangle next to the text */
-@media (max-width: 700px) {
-  .warning {
-    flex-direction: row;
-  }
-
-  .triangle {
-    width: 36px;
+    opacity: 0.3;
   }
 }

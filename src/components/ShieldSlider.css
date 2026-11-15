@@ -1,0 +1,33 @@
+/* ShieldSlider: the sprite-based shielding slider */
+
+.shield-slider {
+  width: 75%;
+  max-width: 190px;
+  margin: 0 auto;
+
+  cursor: grab;
+  user-select: none;
+  touch-action: none;   /* so dragging doesn't scroll the page on phones */
+
+  transform: translate(100px, -10px)
+}
+
+.shield-slider:active {
+  cursor: grabbing;
+}
+
+.shield-slider img {
+  display: block;
+  width: 75%;
+  height: auto;
+
+  pointer-events: none;   /* pointer events are handled by the wrapper */
+  -webkit-user-drag: none;
+}
+
+/* Locked (not enough power): tint the sprite red.
+   It can still be dragged, so the player can lower the shielding.
+   Tweak the filter below if you want a different red. */
+.shield-slider.locked img {
+  filter: sepia(1) saturate(6) hue-rotate(-40deg);
+}

@@ -1,0 +1,39 @@
+/* OxygenButton: the sprite-based oxygen button */
+
+.o2-button {
+  display: block;
+  width: 75%;
+  max-width: 190px;
+  margin: 0 auto;
+  padding: 0;
+
+  /* Remove the normal browser button look - the sprite IS the button */
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  user-select: none;
+  touch-action: none;
+
+  transform: translate(10px, -10px)
+}
+
+.o2-button img {
+  display: block;
+  width: 75%;
+  height: auto;
+
+  pointer-events: none;   /* clicks go to the button, not the image */
+  -webkit-user-drag: none;
+}
+
+/* Locked (not enough power): tint the sprite red and block clicks.
+   Tweak the filter below if you want a different red. */
+.o2-button.locked {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.o2-button.locked img {
+  filter: sepia(1) saturate(6) hue-rotate(-40deg);
+}

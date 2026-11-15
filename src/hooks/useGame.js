@@ -4,36 +4,38 @@
 // - Calls step() (see game/engine.js) every TICK seconds to advance the game.
 // - Gives the UI the actions the player can take (start, shield, pump).
 import { useEffect, useState } from 'react'
-
 import { TICK } from '../game/config.js'
 import { createInitialState } from '../game/state.js'
 import { step } from '../game/engine.js'
 import { canUsePower } from '../game/mechanics/power.js'
+import { fetchNasaCmeSchedule } from '../game/nasaDonki.js'
 
 export function useGame() {
+  // Always initialize with a valid state object
   const [game, setGame] = useState(() => createInitialState())
 
-  // Game loop: advance the game one tick at a regular interval.
   useEffect(() => {
-    const id = setInterval(() => setGame(step), TICK * 1000)
+    const id = setInterval(() => setGame((s) => step(s)), TICK * 1000)
 
     // Stop the loop when the component unmounts
     return () => clearInterval(id)
   }, [])
 
   return {
-    // The current game state (read by the UI)
-    game,
+    // Guaranteed to be an object, never undefined
+    game: game || createInitialState(),
 
-    // Start a fresh mission (also used for "try again")
-    start: () => setGame(createInitialState('playing')),
+    start: async () => {
+      const schedule = await fetchNasaCmeSchedule()
+      setGame({ ...createInitialState('playing'), cmeSchedule: schedule })
+    },
 
-    // Player moves the shielding slider (0 - 100)
     setShield: (shield) => setGame((s) => ({ ...s, shield })),
 
-    // Player presses / releases the oxygen button.
-    // The pump can only turn on if there is enough power.
     setPumping: (pumping) =>
       setGame((s) => ({ ...s, pumping: pumping && canUsePower(s.power) })),
+
+    toggleAbort: () =>
+      setGame((s) => ({ ...s, aborted: !s.aborted })),
   }
 }
