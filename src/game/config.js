@@ -60,11 +60,13 @@ export const RADIATION = {
 
 // ---------- Hazards ----------
 
-// How often a new hazard appears (seconds)
+// When hazards appear (seconds).
+// Only ONE hazard happens at a time. After a hazard ends there is a quiet
+// period (the warning lights are off) before the next one starts.
 export const HAZARD_SPAWN = {
   firstAt: 12,          // time of the first hazard
-  min: 15,              // shortest wait between hazards
-  max: 30,              // longest wait between hazards
+  min: 10,              // shortest quiet time AFTER a hazard has ended
+  max: 20,              // longest quiet time AFTER a hazard has ended
 }
 
 // The three hazard types.
