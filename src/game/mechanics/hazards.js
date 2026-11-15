@@ -26,8 +26,13 @@ export function updateHazards(state) {
     .map((hazard) => ({ ...hazard, t: hazard.t + TICK }))
     .filter((hazard) => hazard.t < hazard.dur)
 
-  // Count down to the next hazard
-  let nextHazard = state.nextHazard - TICK
+  // Count down to the next hazard - but ONLY while no hazard is happening.
+  // This keeps hazards from overlapping, so the warning lights really do
+  // turn off when an event is over.
+  let nextHazard = state.nextHazard
+  if (hazards.length === 0) {
+    nextHazard -= TICK
+  }
 
   // Time for a new hazard: pick a random type
   if (nextHazard <= 0) {
@@ -36,7 +41,7 @@ export function updateHazards(state) {
 
     hazards.push({ type, t: 0, ...HAZARDS[type] })
 
-    // Wait a random time before the next one
+    // The quiet time that will follow once this hazard has ended
     nextHazard =
       HAZARD_SPAWN.min + Math.random() * (HAZARD_SPAWN.max - HAZARD_SPAWN.min)
   }
