@@ -23,6 +23,13 @@
   text-align: center;
 }
 
+/* Their labels ("SHIELDING 0", "OXYGEN PUMP") are bright blue so they stand out.
+   (When power runs out, the locked rule below turns them red instead.) */
+.sprite-control .label {
+  font-weight: bold;
+  color: var(--bright-blue);
+}
+
 /* Slant the meters block to match the desk perspective */
 .control:has(.meter) {
   transform: skewX(40deg) rotate(0deg);

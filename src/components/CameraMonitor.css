@@ -35,28 +35,3 @@
   text-shadow: 0 0 4px #00ff66;
   pointer-events: none;
 }
-
-/* Temporary Buttons */
-.cam-switch-controls {
-  position: absolute;
-  top: 525px;
-  left: 100px;
-  display: flex;
-  gap: 10px;
-  z-index: 3;
-  pointer-events: auto;
-}
-
-.cam-switch-controls button {
-  background: #222;
-  color: #00ff66;
-  border: 1px solid #00ff66;
-  padding: 4px 10px;
-  font-family: monospace;
-  cursor: pointer;
-}
-
-.cam-switch-controls button:hover {
-  background: #00ff66;
-  color: #000;
-}

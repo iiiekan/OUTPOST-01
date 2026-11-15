@@ -1,0 +1,53 @@
+/* CameraButtons: the three red sprite buttons on the table.
+   Positions are in pixels inside the room (same as the other table controls).
+   Move the whole group with top / left. */
+
+.cam-buttons {
+  position: absolute;
+  top: 500px;
+  left: 90px;
+  z-index: 3;
+
+  display: flex;
+  gap: 0;
+}
+
+/* One button: the sprite with its label underneath */
+.cam-button {
+  width: 66px;
+  padding: 0;
+
+  /* Remove the normal browser button look - the sprite IS the button */
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+
+  user-select: none;
+  touch-action: none;
+}
+
+.cam-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  pointer-events: none;   /* clicks go to the button, not the image */
+  -webkit-user-drag: none;
+}
+
+.cam-button-label {
+  display: block;
+  margin-top: -6px;
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #1a2233;
+  opacity: 0.65;
+}
+
+/* The selected camera's label is brighter */
+.cam-button.active .cam-button-label {
+  opacity: 1;
+}

@@ -7,7 +7,7 @@
 //   locked    - true when there isn't enough power (button is red and can't be used)
 //   onPress   - called when the player presses the button
 //   onRelease - called when the player lets go
-import { BUTTON_FRAMES } from '../assets/but/frames.js'
+import { BUTTON_FRAMES } from '../assets/frames.js'
 import { useFrameAnimation } from '../hooks/useFrameAnimation.js'
 import './OxygenButton.css'
 

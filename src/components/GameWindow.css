@@ -1,39 +1,9 @@
-/* GameWindow: the big window onto the moon surface */
+/* GameWindow: only the mission countdown is styled here now.
+   (The old moon drawing was replaced by the camera feed and the room artwork.) */
 
-.window {
-  position: relative;
-  min-height: 340px;
-  overflow: hidden;
-
-  background: #e6e6e6;
-  border: 2px solid var(--ink);
-}
-
-/* The drawing fills the whole window */
-.window svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-
-  fill: #e6e6e6;
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-
-.window svg .ground {
-  fill: #b0b0b0;
-}
-
-/* Craters are outlines only */
-.window svg ellipse {
-  fill: none;
-}
-
-/* "MISSION 123s" countdown in the top-left corner */
+/* "MISSION 123s" countdown - bright blue so it stands out on the dark wall */
 .timer {
-  position: absolute;
-  top: 8px;
-  left: 10px;
   font-size: 12px;
+  font-weight: bold;
+  color: var(--bright-blue);
 }
