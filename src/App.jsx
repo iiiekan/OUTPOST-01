@@ -12,13 +12,18 @@ import CommsPanel from './components/CommsPanel.jsx'
 import RadiationGraph from './components/RadiationGraph.jsx'
 import Console from './components/Console.jsx'
 import Overlay from './components/Overlay.jsx'
+<<<<<<< HEAD
 import CameraMonitor from './components/CameraMonitor.jsx'
 import CameraButtons from './components/CameraButtons.jsx'
+=======
+import CameraMonitor from './components/CameraMonitor.jsx';
+import CmeGraph from './components/CmeGraph.jsx';
+>>>>>>> 3d9cac1 (Added NASA DONKI API for CME Probability)
 
 import './styles/base.css'
 
 export default function App() {
-  const { game, start, setShield, setPumping } = useGame()
+  const { game, start, setShield, setPumping, toggleAbort } = useGame()
 
   // Which camera feed is showing (1, 2 or 3). Changed with the red buttons.
   const [activeCam, setActiveCam] = useState(1)
@@ -28,7 +33,7 @@ export default function App() {
   const alarmOn = game.phase === 'playing' && game.hazards.length > 0
 
   // Seconds left until the mission is complete
-  const timeLeft = Math.max(0, Math.ceil(MISSION_LENGTH - game.t))
+  const timeLeft = Math.max(0, Math.ceil(MISSION_LENGTH - (game?.t || 0)));
 
   return (
     <div className="room">
@@ -40,7 +45,16 @@ export default function App() {
 
       {/* Green radar screens on the table, and the camera feed in the window */}
       <GreenPanels />
+<<<<<<< HEAD
       <CameraMonitor activeCam={activeCam} />
+=======
+      <CameraMonitor
+        hazards={game.hazards}
+        isAborted={game.aborted}
+        onToggleAbort={toggleAbort}
+      />
+      <CmeGraph gameTime={game.t} cmeSchedule={game.cmeSchedule} />
+>>>>>>> 3d9cac1 (Added NASA DONKI API for CME Probability)
 
       {/* Right wall: comms and radiation graph */}
       <div className="right">

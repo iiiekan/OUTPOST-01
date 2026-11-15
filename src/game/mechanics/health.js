@@ -8,7 +8,7 @@ import { clamp } from './utils.js'
 import { isFullyShielded } from './shielding.js'
 
 // Returns the new health after one tick.
-export function updateHealth(health, { oxygen, radiation, shield }) {
+export function updateHealth(health, { oxygen, radiation, shield, hazards = [], aborted = false }) {
   let loss = 0
 
   // No oxygen -> constant damage
@@ -20,6 +20,12 @@ export function updateHealth(health, { oxygen, radiation, shield }) {
   // (Example: radiation 35, shield 20 -> damage is based on 15.)
   if (!isFullyShielded(shield, radiation)) {
     loss += HEALTH.radiationDamage * (radiation - shield)
+  }
+
+  // CME active and astronauts are still outside on EVA -> heavy plasma damage
+  const cmeActive = hazards.some((h) => h.type === 'cme')
+  if (cmeActive && !aborted) {
+    loss += 12
   }
 
   return clamp(health - loss * TICK)

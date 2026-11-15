@@ -17,10 +17,12 @@ export const createInitialState = (phase = 'ready') => ({
   // Player controls
   shield: 0,          // where the player put the shielding slider
   pumping: false,     // true while the oxygen button is held
+  aborted: false,     // true when crew is evacuated
 
   // Hazards
   hazards: [],                     // hazards that are active right now
   nextHazard: HAZARD_SPAWN.firstAt, // seconds until the next one appears
+  cmeSchedule: [],
 
   // Radiation
   radiation: RADIATION.baseline,                  // current level
