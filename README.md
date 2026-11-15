@@ -23,7 +23,7 @@ Built with React + Vite + JavaScript.
 | Shielding       | Stops radiation damage when set to the radiation level or higher. Lower only slows damage. The slider moves in steps of 4 (0, 4, 8 ... 100). |
 | Radiation       | Higher radiation = faster health loss.                                                       |
 | Crew health     | Game over at 0. Win by surviving the whole mission.                                          |
-| Hazards         | Solar flare, coronal mass ejection, geomagnetic storm. The alarm never says which one.       |
+| Hazards         | Solar flare, coronal mass ejection, geomagnetic storm, one at a time. The alarm glows only while one is happening and never says which. |
 
 ## Folder guide
 
@@ -54,6 +54,8 @@ Built with React + Vite + JavaScript.
         CommsPanel           astronaut face and speech (bottom screen of the right wall)
         RadiationGraph       radiation vs shielding graph (top screen of the right wall)
         Console              slider, oxygen button, meters
+        CameraMonitor        camera feed in the window (cam1 / cam2 / cam3)
+        CameraButtons        three red sprite buttons that switch the camera (only the pressed one animates)
         ShieldSlider         sprite slider (assets/slide), clicks between notches
         OxygenButton         sprite button (assets/but), press / release animation
         Meter                small labeled bar
@@ -64,6 +66,8 @@ Built with React + Vite + JavaScript.
       assets/
         frames.js            loads and orders the sprite frames (but/ and slide/)
         but/                 oxygen button frames, but1 (up) ... but8 (pressed)
+        red/                 red camera button frames, red1 (resting) ... red10 (one full press and release)
+        cams/                the three camera pictures
         slide/               shielding slider frames, slide1 (0) ... slide30 (max)
 
       services/nasaApi.js    (placeholder) NASA DONKI API
