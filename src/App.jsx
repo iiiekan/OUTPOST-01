@@ -7,6 +7,7 @@ import { MISSION_LENGTH } from './game/config.js'
 
 import WarningPanel from './components/WarningPanel.jsx'
 import GreenPanels from './components/GreenPanels.jsx'
+import LeftPanel from './components/LeftPanel.jsx'
 import GameWindow from './components/GameWindow.jsx'
 import CommsPanel from './components/CommsPanel.jsx'
 import RadiationGraph from './components/RadiationGraph.jsx'
@@ -32,6 +33,7 @@ export default function App() {
       <GameWindow timeLeft={timeLeft} />
 
       <GreenPanels />
+      <LeftPanel />
       
       <CameraMonitor
         activeCam={activeCam}
